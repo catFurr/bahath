@@ -98,12 +98,19 @@
           >awesome-vue</a
         >
       </li>
+      <!-- <li v-if="result && result.users">
+        <div v-for="user of result.users" :key="user.userID">
+          {{ user.name }} {{ user.email }}
+        </div>
+      </li> -->
     </ul>
   </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+// import { useQuery } from "@vue/apollo-composable";
+// import gql from "graphql-tag";
 
 @Options({
   props: {
@@ -112,6 +119,22 @@ import { Options, Vue } from "vue-class-component";
 })
 export default class HelloWorld extends Vue {
   msg!: string;
+
+  // setup() {
+  //   const { result } = useQuery(gql`
+  //     query getUsers {
+  //       users {
+  //         userID
+  //         name
+  //         email
+  //       }
+  //     }
+  //   `);
+
+  //   return {
+  //     result,
+  //   };
+  // }
 }
 </script>
 

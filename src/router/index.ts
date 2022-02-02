@@ -1,5 +1,9 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Home from "../views/Home.vue";
+import Home from "@/views/index.vue";
+import NotFound from "../views/not-found.vue";
+import Callback from "@/components/callback.vue";
+
+// import { authenticationGuard } from "@/services/authentication-guard";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -14,7 +18,26 @@ const routes: Array<RouteRecordRaw> = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+      import(/* webpackChunkName: "about" */ "../views/about.vue"),
+    // beforeEnter: authenticationGuard,
+  },
+  {
+    path: "/docs",
+    component: () => import("@/views/docs/index.vue"),
+  },
+  // {
+  //   path: "/dashboard",
+  //   component: () => import("@/views/dashboard.vue"),
+  // },
+  {
+    path: "/callback",
+    name: "callback",
+    component: Callback,
+  },
+  {
+    path: "/:catchAll(.*)",
+    name: "Not Found",
+    component: NotFound,
   },
 ];
 
