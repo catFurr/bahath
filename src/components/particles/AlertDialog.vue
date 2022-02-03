@@ -3,7 +3,7 @@
     v-if="text"
     class="text-red-700 bg-red-300 rounded-lg p-2 items-center flex"
   >
-    <FontAwesomeIcon :icon="['fas', 'exclamation']" class="mx-2" />
+    <font-awesome-icon :icon="['fas', 'exclamation']" class="mx-2" />
     <p>{{ text }}</p>
   </div>
 </template>

@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Home from "@/views/index.vue";
-import NotFound from "../views/not-found.vue";
-import Callback from "@/components/callback.vue";
+import HomePage from "@/views/index.vue";
+import ErrorPage from "../views/error.vue";
 
 // import { authenticationGuard } from "@/services/authentication-guard";
 
@@ -9,35 +8,28 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Home",
-    component: Home,
-  },
-  {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/about.vue"),
-    // beforeEnter: authenticationGuard,
+    component: HomePage,
   },
   {
     path: "/docs",
     component: () => import("@/views/docs/index.vue"),
   },
-  // {
-  //   path: "/dashboard",
-  //   component: () => import("@/views/dashboard.vue"),
-  // },
   {
-    path: "/callback",
-    name: "callback",
-    component: Callback,
+    path: "/dashboard",
+    component: () => import("@/views/dashboard.vue"),
+  },
+  {
+    path: "/error",
+    component: ErrorPage,
+  },
+  {
+    path: "/:code",
+    component: () => import("@/views/code.vue"),
   },
   {
     path: "/:catchAll(.*)",
     name: "Not Found",
-    component: NotFound,
+    component: ErrorPage,
   },
 ];
 

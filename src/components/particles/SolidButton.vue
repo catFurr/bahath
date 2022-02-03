@@ -7,7 +7,7 @@
         : 'bg-primary-light text-primary'
     "
   >
-    <FontAwesomeIcon
+    <font-awesome-icon
       v-if="icon"
       :icon="[`${iconType}`, `${icon}`]"
       :class="`${iconMeta}`"
@@ -25,6 +25,7 @@ export default defineComponent({
   props: {
     iconType: {
       type: String,
+      default: "fas",
     },
     iconMeta: {
       type: String,

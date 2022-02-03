@@ -15,7 +15,7 @@
           class="absolute top-0 right-0 text-xl text-gray-500 my-2 mx-4 hover:text-gray-700"
           @click.prevent="close()"
         >
-          <FontAwesomeIcon :icon="['fas', 'times']" />
+          <font-awesome-icon :icon="['fas', 'times']" />
         </button>
         <slot :close="close">
           <p>Something is supposed to be here.</p>
@@ -40,13 +40,13 @@ export default {
   data() {
     return {
       isOpen: this.open,
-    }
+    };
   },
   methods: {
     close(content = null) {
-      this.isOpen = false
-      this.$emit('closed', content)
+      this.isOpen = false;
+      this.$emit("closed", content);
     },
   },
-}
+};
 </script>

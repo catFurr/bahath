@@ -10,7 +10,7 @@
       aria-label="Form Code"
       name="formcode"
     />
-    <FontAwesomeIcon
+    <font-awesome-icon
       v-if="isError"
       class="text-red-700 self-end mb-2"
       :icon="['fas', 'exclamation']"
@@ -18,34 +18,29 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    value: {
-      type: String,
-      default: null,
-    },
-    placeholder: String(),
-    isError: Boolean(false),
-  },
-  emits: ['input'],
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  props: ["modelValue", "isError"],
+  emits: ["update:modelValue"],
   computed: {
     inputValue: {
       get() {
-        return this.value
+        return this.modelValue;
       },
-      set(value) {
-        this.$emit('input', value)
+      set(value: string) {
+        this.$emit("update:modelValue", value);
       },
     },
   },
-}
+});
 </script>
 
 <style scoped>
 .input {
   outline: none;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   border-bottom-width: 2px;
   border-bottom-style: solid;
   border-bottom-color: #72767e;
@@ -59,7 +54,7 @@ export default {
 }
 .input-error {
   outline: none;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   border-bottom-width: 2px;
   border-bottom-style: solid;
   border-bottom-color: #cf0045;

@@ -2,7 +2,7 @@
   <div
     class="w-full rounded-xl overflow-hidden truncate p-2 cursor-pointer text-center bg-transparent text-primary hover:bg-primary hover:text-white hover:shadow"
   >
-    <FontAwesomeIcon v-if="icon" :icon="['fas', `${icon}`]" />
+    <font-awesome-icon v-if="icon" :icon="['fas', `${icon}`]" />
     <p v-if="text" class="font-secondary inline">
       {{ text }}
     </p>

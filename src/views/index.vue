@@ -4,7 +4,7 @@
       <router-link to="/docs" class="float-left">
         <SolidButtonVue :text="'docs'" class="w-16" />
       </router-link>
-      <!-- <UserNav class="float-right" :keep-expanded="true" /> -->
+      <UserNavVue class="float-right" :keep-expanded="true" />
     </div>
     <div class="h-screen grid grid-cols-1 content-center">
       <img
@@ -25,11 +25,11 @@
         action="/redirect"
         @submit.prevent="goToForm()"
       >
-        <!-- <TextInputWithError
+        <TextInputWithErrorVue
           v-model="code"
           :is-error="!getCleanedCode(code) && triedSubmit"
           class="text-sm sm:text-base md:text-lg"
-        /> -->
+        />
         <!-- <input type="submit" class="mt-3 mx-2 w-24" value="Submit" /> -->
         <div @click="goToForm()">
           <HollowButtonVue class="w-24 m-1" :text="'begin'" />
@@ -51,15 +51,18 @@
 import EmptyButtonVue from "@/components/particles/EmptyButton.vue";
 import HollowButtonVue from "@/components/particles/HollowButton.vue";
 import SolidButtonVue from "@/components/particles/SolidButton.vue";
+import UserNavVue from "@/components/molecules/UserNav.vue";
+import TextInputWithErrorVue from "@/components/particles/TextInputWithError.vue";
 
 import { defineComponent, ref } from "vue";
+import router from "@/router";
 
 export default defineComponent({
   components: {
     EmptyButton: EmptyButtonVue,
     HollowButtonVue,
-    // TextInputWithError,
-    // UserNav,
+    TextInputWithErrorVue,
+    UserNavVue,
     SolidButtonVue,
   },
 
@@ -67,16 +70,22 @@ export default defineComponent({
     let code = ref("");
     let triedSubmit = ref(false);
 
+    // TODO: implement this in a central store
+    const getCleanedCode = (val: string): string | null => {
+      return val;
+    };
+
     const goToForm = () => {
       triedSubmit.value = true;
-      // if (!this.getCleanedCode(this.code)) return;
-      // this.$router.push(this.getCleanedCode(this.code));
+      const cleanCode = getCleanedCode(code.value);
+      router.push(cleanCode || "");
     };
 
     return {
       code,
       triedSubmit,
       goToForm,
+      getCleanedCode,
     };
   },
 });
