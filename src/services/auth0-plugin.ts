@@ -9,10 +9,10 @@ import createAuth0Client, {
 import { App, inject, ref } from "vue";
 import router from "../router";
 
-const domain = "bahath.us.auth0.com"; // process.env.AUTH0_DOMAIN;
-const clientId = "qq7Ljk2fDcRd0PtPhD6QuxumsKMKU3bn"; // process.env.AUTH0_CLIENT_ID;
-const audience = "https://api.deadcat.xyz"; // process.env.AUTH0_AUDIENCE;
-const callbackUrl = "http://localhost:3000"; // process.env.AUTH0_CALLBACK_URL;
+const domain = process.env.AUTH0_DOMAIN;
+const clientId = process.env.AUTH0_CLIENT_ID;
+const audience = process.env.AUTH0_AUDIENCE;
+const callbackUrl = process.env.AUTH0_CALLBACK_URL;
 
 const Auth0Symbol = Symbol("auth0");
 
