@@ -36,7 +36,7 @@
         </div>
       </form>
       <p class="font-secondary pt-3 text-center">- or -</p>
-      <router-link to="/blankform/editor" class="p-2 flex mx-auto w-48">
+      <router-link to="/error?type=300" class="p-2 flex mx-auto w-48">
         <!-- Make a new form -->
         <EmptyButton :text="'make a new form'" />
       </router-link>

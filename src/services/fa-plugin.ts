@@ -7,9 +7,14 @@ import {
   faShareAlt,
   faExternalLinkAlt,
   faPlus,
+  faCircle,
 } from "@fortawesome/free-solid-svg-icons";
 // import { fab } from "@fortawesome/free-brands-svg-icons";
-import { faClone } from "@fortawesome/free-regular-svg-icons";
+import {
+  faClone,
+  faCircle as farCircle,
+  faSnowflake,
+} from "@fortawesome/free-regular-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { App } from "vue";
@@ -23,10 +28,11 @@ export default {
       faChevronDown,
       faShareAlt,
       faExternalLinkAlt,
-      faPlus
+      faPlus,
+      faCircle
     );
     // library.add(fab);
-    library.add(faClone);
+    library.add(faClone, farCircle, faSnowflake);
 
     app.component("font-awesome-icon", FontAwesomeIcon);
   },

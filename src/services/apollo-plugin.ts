@@ -12,7 +12,8 @@ export default {
     // HTTP connection to the API
     const httpLink = createHttpLink({
       // You should use an absolute URL here
-      uri: "https://api.deadcat.xyz",
+      // uri: "https://api.deadcat.xyz",
+      uri: "http://localhost:4000",
     });
 
     const authLink = setContext(async (_, { headers }) => {

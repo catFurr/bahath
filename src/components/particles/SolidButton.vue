@@ -1,10 +1,10 @@
 <template>
   <div
-    class="w-full rounded-xl overflow-hidden truncate p-2 cursor-pointer text-center hover:shadow hover:bg-primary hover:text-white"
+    class="w-full rounded-xl overflow-hidden truncate p-2 text-center hover:shadow hover:bg-primary"
     :class="
       isSelected
         ? 'bg-primary text-primary-light'
-        : 'bg-primary-light text-primary'
+        : 'bg-primary-light text-primary cursor-pointer hover:text-white'
     "
   >
     <font-awesome-icon
@@ -36,7 +36,7 @@ export default defineComponent({
     },
     text: {
       type: String,
-      required: true,
+      required: false,
     },
     icon: {
       type: String,

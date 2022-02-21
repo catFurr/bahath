@@ -16,7 +16,7 @@
         <!-- <img
           data-blink-uuid="6db5a605-8572-4db6-bfb1-81eff03845c3"
           class="h-64"
-        /> -->
+        />-->
         <p class="text-xs text-gray-600 font-mono">
           photo by alleksana from Pexels
         </p>
@@ -30,7 +30,7 @@
         <p class="py-2 px-1 text-xl text-primary font-secondary">
           feel free to give it another go.
         </p>
-        <a href="">
+        <a href="#">
           <SolidButtonVue :text="'Refresh the Page'" class="mt-4" />
         </a>
       </div>
@@ -52,7 +52,7 @@
         <!-- <img
           data-blink-uuid="7f7222f8-c10a-48ae-88d4-835d9b5b7d65"
           class="h-64"
-        /> -->
+        />-->
         <p class="text-xs text-gray-600 font-mono">
           photo by Daian Gan from Pexels
         </p>
@@ -64,11 +64,16 @@
           painting a masterpiece
         </p>
         <p class="py-2 px-1 text-xl text-primary font-secondary">
-          takes time. This page is not yet ready.
+          takes time. This page is not yet ready. But you can still make forms
+          using the api
         </p>
-        <router-link to="/">
-          <SolidButtonVue :text="'Go Back Home'" class="mt-4" />
-        </router-link>
+        <a
+          href="https://api.deadcat.xyz"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <SolidButtonVue :text="'Try GraphQL Playground'" class="mt-4" />
+        </a>
       </div>
     </div>
 
@@ -88,7 +93,7 @@
         <!-- <img
           data-blink-uuid="5fbce38d-f229-4e52-896c-f600530dd072"
           class="max-h-64"
-        /> -->
+        />-->
         <p class="text-xs text-gray-600 font-mono">
           Photo by pixabay from Pexels
         </p>

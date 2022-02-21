@@ -1,6 +1,6 @@
 <template>
   <div v-if="isLoggedIn" class="font-secondary text-right">
-    <p class="text-center p-2 w-32">hi {{ user?.name }}</p>
+    <p class="text-center p-2 w-32">hi there!</p>
     <router-link v-if="keepExpanded" to="/dashboard">
       <SolidButtonVue :text="'dashboard'" class="w-32 mt-2 mb-1" />
     </router-link>
@@ -45,6 +45,7 @@ export default defineComponent({
     let login = auth0?.login;
     let logout = auth0?.logout;
     let isLoading = auth0?.isLoading;
+    let getToken = auth0?.getAccessToken;
 
     return {
       user,
@@ -52,6 +53,7 @@ export default defineComponent({
       logout,
       isLoggedIn,
       isLoading,
+      getToken,
     };
   },
 });

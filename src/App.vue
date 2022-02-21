@@ -13,13 +13,8 @@ export default defineComponent({
 
     onMounted(async () => {
       if (!auth0) return;
-
       auth0.createClient().then(() => {
-        auth0.handleCallback().then(() => {
-          auth0.getAccessToken().then((token) => {
-            console.log(token || "Couldnt get token!");
-          });
-        });
+        auth0.handleCallback();
       });
     });
   },

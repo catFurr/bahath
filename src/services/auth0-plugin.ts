@@ -9,8 +9,6 @@ import createAuth0Client, {
 import { App, inject, ref } from "vue";
 import router from "../router";
 
-console.log(process.env);
-
 const domain = process.env.VUE_APP_AUTH0_DOMAIN;
 const clientId = process.env.VUE_APP_AUTH0_CLIENT_ID;
 const audience = process.env.VUE_APP_AUTH0_AUDIENCE;
@@ -30,6 +28,7 @@ const createClient = async (): Promise<void> => {
     client_id: clientId,
     audience: audience,
     redirect_uri: callbackUrl,
+    cacheLocation: "localstorage",
   });
 };
 
@@ -96,39 +95,17 @@ const handleCallback = async (): Promise<void> => {
 };
 
 const login = async (options?: RedirectLoginOptions): Promise<void> => {
-  if (!auth0Client.value) {
-    return;
-  }
-
-  try {
-    await auth0Client.value.loginWithRedirect(options);
-  } catch (err) {
-    console.log(err);
-    // error.value = err;
-  }
+  await auth0Client.value?.loginWithRedirect(options);
 };
 
 const logout = async (options?: LogoutOptions): Promise<void> => {
-  if (!auth0Client.value) {
-    return;
-  }
-
-  try {
-    auth0Client.value.logout(options);
-  } catch (err) {
-    console.log(err);
-    // error.value = err;
-  }
+  await auth0Client.value?.logout(options);
 };
 
 const getAccessToken = async (
   options?: GetTokenSilentlyOptions
 ): Promise<null | string> => {
-  if (!auth0Client.value) {
-    return null;
-  }
-
-  return (await auth0Client.value.getTokenSilently(options)) as string;
+  return (await auth0Client.value?.getTokenSilently(options)) as string;
 };
 
 export const useAuth0 = (): Auth0Plugin | null => {

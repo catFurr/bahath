@@ -19,12 +19,16 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/dashboard.vue"),
   },
   {
-    path: "/error",
-    component: ErrorPage,
-  },
-  {
     path: "/:code",
     component: () => import("@/views/code.vue"),
+  },
+  {
+    path: "/coffee",
+    component: () => import("@/views/coffee.vue"),
+  },
+  {
+    path: "/error",
+    component: ErrorPage,
   },
   {
     path: "/:catchAll(.*)",
