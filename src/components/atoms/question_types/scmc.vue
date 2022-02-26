@@ -46,20 +46,16 @@ export default defineComponent({
       type: Object,
       required: true,
     },
-    modelValue: {
-      type: String,
-      required: false,
-    },
   },
-  emits: ["update:modelValue"],
+  emits: ["update:value"],
   computed: {
     inputVal: {
       get() {
-        return this.modelValue ? Number(this.modelValue) : null;
+        return this.node.answer ? Number(this.node.answer) : null;
       },
       set(value: number) {
         this.$emit(
-          "update:modelValue",
+          "update:value",
           value !== null ? String(value) || "0" : null
         );
       },

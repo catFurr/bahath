@@ -4,7 +4,7 @@
       class="justify-self-center sm:justify-self-end self-end sm:self-center"
     >
       <img
-        src="@/assets/images/pexels-coffee.jpg?nf_resize=fit&w=500"
+        src="@/assets/images/pexels-coffee.webp?nf_resize=fit&w=500"
         class="h-48 sm:h-64 w-auto"
         width="64"
         height="48"

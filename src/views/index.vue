@@ -1,14 +1,14 @@
 <template>
   <div class="text-primary relative">
     <div class="p-6 md:p-10 absolute w-full">
-      <router-link to="/docs" class="float-left">
+      <router-link to="/error?type=300" class="float-left">
         <SolidButtonVue :text="'docs'" class="w-16" />
       </router-link>
       <UserNavVue class="float-right" :keep-expanded="true" />
     </div>
     <div class="h-screen grid grid-cols-1 content-center">
       <img
-        src="@/assets/images/bahathlogo.png"
+        src="@/assets/images/bahathlogo.webp"
         class="w-32 h-32 sm:w-48 sm:h-48 place-self-center"
         width="32"
         height="32"

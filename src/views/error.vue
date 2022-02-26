@@ -8,7 +8,7 @@
         class="justify-self-center sm:justify-self-end self-end sm:self-center"
       >
         <img
-          src="@/assets/images/pexels-sorry.jpg?nf_resize=fit&w=500"
+          src="@/assets/images/pexels-sorry.webp?nf_resize=fit&w=500"
           class="h-48 sm:h-64 w-auto"
           width="64"
           height="48"
@@ -44,7 +44,7 @@
         class="justify-self-center sm:justify-self-end self-end sm:self-center"
       >
         <img
-          src="@/assets/images/pexels-painting.jpg?nf_resize=fit&w=500"
+          src="@/assets/images/pexels-painting.webp?nf_resize=fit&w=500"
           class="h-48 sm:h-64 w-auto"
           width="64"
           height="48"
@@ -64,16 +64,18 @@
           painting a masterpiece
         </p>
         <p class="py-2 px-1 text-xl text-primary font-secondary">
-          takes time. This page is not yet ready. But you can still make forms
-          using the api
+          takes time. This page is not yet ready.
         </p>
-        <a
+        <!-- <a
           href="https://api.deadcat.xyz"
           target="_blank"
           rel="noopener noreferrer"
         >
           <SolidButtonVue :text="'Try GraphQL Playground'" class="mt-4" />
-        </a>
+        </a> -->
+        <router-link to="/">
+          <SolidButtonVue :text="'Go Back Home'" class="mt-4" />
+        </router-link>
       </div>
     </div>
 
@@ -85,7 +87,7 @@
         class="justify-self-center sm:justify-self-end self-end sm:self-center"
       >
         <img
-          src="@/assets/images/pexels-telephone.jpg?nf_resize=fit&w=500"
+          src="@/assets/images/pexels-telephone.webp?nf_resize=fit&w=500"
           class="h-48 sm:h-64 w-auto"
           width="64"
           height="48"
@@ -105,11 +107,11 @@
           Nobody Picked Up
         </p>
         <p class="py-2 px-1 text-xl text-primary font-secondary">
-          Looks like that page does not exist
+          Looks like that page does not exist.
         </p>
-        <router-link to="/">
-          <SolidButtonVue :text="'Go Back Home'" class="mt-4" />
-        </router-link>
+        <div @click="$router.back()">
+          <SolidButtonVue :text="'Go Back'" class="mt-4" />
+        </div>
       </div>
     </div>
     <div v-else class="self-center mx-auto">

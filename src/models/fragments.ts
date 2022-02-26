@@ -2,19 +2,19 @@ import gql from "graphql-tag";
 
 export const FRAG_BRANCH_CORE = gql`
   fragment BranchCore on BranchNode {
-    branchID
+    id
     next
     isBackAvail
     isSubmitAvail
     scene {
-      sceneID
+      id
       bg
       elementsConnection {
         edges {
           row
           col
           node {
-            elementID
+            id
             title
             ... on LinkEl {
               to

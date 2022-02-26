@@ -19,6 +19,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/dashboard.vue"),
   },
   {
+    path: "/:code/:branch",
+    component: () => import("@/views/code.vue"),
+  },
+  {
+    // same as above, but for entry branches
     path: "/:code",
     component: () => import("@/views/code.vue"),
   },
