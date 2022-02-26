@@ -99,7 +99,10 @@ const login = async (options?: RedirectLoginOptions): Promise<void> => {
 };
 
 const logout = async (options?: LogoutOptions): Promise<void> => {
-  await auth0Client.value?.logout(options);
+  await auth0Client.value?.logout({
+    returnTo: callbackUrl,
+    ...options,
+  });
 };
 
 const getAccessToken = async (
