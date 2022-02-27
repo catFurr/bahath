@@ -70,7 +70,7 @@
 import router from "@/router";
 import { useMutation, useQuery, useResult } from "@vue/apollo-composable";
 import gql from "graphql-tag";
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, inject } from "vue";
 import { useRoute } from "vue-router";
 
 import scmcVue from "@/components/atoms/question_types/scmc.vue";
@@ -91,12 +91,14 @@ export default defineComponent({
     //
     // Fetch the current page
     const route = useRoute();
+    const popToast: { (data: string): null } | undefined = inject("popToast");
 
     const {
       result: branchResult,
       loading: fetchLoading,
       error: fetchError,
-      onResult: fetchRes,
+      onResult: onFetchRes,
+      onError: onFetchError,
     } = useQuery(
       gql`
         ${FRAG_BRANCH_CORE}
@@ -113,6 +115,9 @@ export default defineComponent({
       })
     );
     const fetchState = { fetchLoading, fetchError };
+    onFetchError((err) => {
+      popToast?.(String(err) + String(fetchError.value));
+    });
     const branch = useResult(branchResult, null, (d) => d.branchNodes[0]);
     const branchID = computed(() => branch.value?.id);
     const els = computed(() => {
@@ -123,7 +128,7 @@ export default defineComponent({
       );
     });
 
-    fetchRes(({ data }) => {
+    onFetchRes(({ data }) => {
       if (data && !data.branchNodes.length) router.replace("/error?type=404");
     });
 
@@ -149,7 +154,7 @@ export default defineComponent({
     const submitFinish = () => {
       // make sure all answers are saved
       // move currBranch to first/entry branch (backend needs to do!)
-      router.push("coffee");
+      router.push("/coffee");
     };
 
     // Sync answer with DB
@@ -159,8 +164,10 @@ export default defineComponent({
     // if this is newly created, value and nextAns will always be null
     const {
       result: answerResult,
-      loading: answerLoading,
+      // loading: answerLoading,
       error: answerError,
+      onResult: onAnswerRes,
+      onError: onAnswerError,
     } = useQuery(
       gql`
         query getAnswer($branchWhere: BranchNodeWhere) {
@@ -199,12 +206,22 @@ export default defineComponent({
       null,
       (d) => d.branchNodes[0].answers[0]
     );
-    const answerState = { answerLoading, answerError };
+    // const answerState = { answerLoading, answerError };
+    onAnswerRes(({ data }) => {
+      if (data?.branchNodes?.[0]?.answers?.[0]?.id) {
+        popToast?.("Loaded old answers");
+      }
+    });
+    onAnswerError((err) => {
+      popToast?.(String(err) + String(answerError.value));
+    });
 
+    // use answerID when possible TODO
     const {
       mutate: sendAnswer,
       loading: submitLoading,
       error: submitError,
+      onError: onSubmitError,
     } = useMutation(
       gql`
         mutation AnswerNext($currBranchID: ID!, $currAnswer: [String!]) {
@@ -222,6 +239,8 @@ export default defineComponent({
       `,
       {
         optimisticResponse: (vars) => {
+          // this needs to work even when answering for the first time
+          // that is when answer does not exist in the database for this user and this branch
           return {
             sendAnswer: {
               id: currAnswer.value?.id,
@@ -233,6 +252,9 @@ export default defineComponent({
       }
     );
     const submitState = { submitLoading, submitError };
+    onSubmitError((err) => {
+      popToast?.(String(err) + String(submitError.value));
+    });
 
     const answersMap = computed(() => {
       var k: StringObjMap = {};
@@ -269,7 +291,6 @@ export default defineComponent({
       branch,
       fetchState,
       submitState,
-      answerState,
       goBack,
       goNext,
       submitFinish,

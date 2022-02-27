@@ -28,11 +28,14 @@
           It's not you, its us
         </p>
         <p class="py-2 px-1 text-xl text-primary font-secondary">
-          feel free to give it another go.
+          maybe try again?
         </p>
-        <a href="#">
+        <div @click="$router.back()">
+          <SolidButtonVue :text="'Go Back'" class="mt-4" />
+        </div>
+        <!-- <a href="#">
           <SolidButtonVue :text="'Refresh the Page'" class="mt-4" />
-        </a>
+        </a> -->
       </div>
     </div>
 

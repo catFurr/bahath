@@ -31,9 +31,9 @@
           class="text-sm sm:text-base md:text-lg"
         />
         <!-- <input type="submit" class="mt-3 mx-2 w-24" value="Submit" /> -->
-        <div @click="goToForm()">
+        <button type="submit">
           <HollowButtonVue class="w-24 m-1" :text="'begin'" />
-        </div>
+        </button>
       </form>
       <p class="font-secondary pt-3 text-center">- or -</p>
       <router-link to="/error?type=300" class="p-2 flex mx-auto w-48">
