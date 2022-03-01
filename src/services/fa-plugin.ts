@@ -8,12 +8,15 @@ import {
   faExternalLinkAlt,
   faPlus,
   faCircle,
+  faPalette,
+  faCog,
 } from "@fortawesome/free-solid-svg-icons";
 // import { fab } from "@fortawesome/free-brands-svg-icons";
 import {
   faClone,
   faCircle as farCircle,
   faSnowflake,
+  faTrashAlt,
 } from "@fortawesome/free-regular-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -29,10 +32,12 @@ export default {
       faShareAlt,
       faExternalLinkAlt,
       faPlus,
-      faCircle
+      faCircle,
+      faPalette,
+      faCog
     );
     // library.add(fab);
-    library.add(faClone, farCircle, faSnowflake);
+    library.add(faClone, farCircle, faSnowflake, faTrashAlt);
 
     app.component("font-awesome-icon", FontAwesomeIcon);
   },

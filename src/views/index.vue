@@ -36,9 +36,9 @@
         </button>
       </form>
       <p class="font-secondary pt-3 text-center">- or -</p>
-      <router-link to="/error?type=300" class="p-2 flex mx-auto w-48">
+      <router-link to="/studio" class="p-2 flex mx-auto w-48">
         <!-- Make a new form -->
-        <EmptyButton :text="'make a new form'" />
+        <EmptyButtonVue :text="'make a new form'" />
       </router-link>
     </div>
     <p class="fixed bottom-0 right-0 p-2 font-secondary text-black">
@@ -59,7 +59,7 @@ import router from "@/router";
 
 export default defineComponent({
   components: {
-    EmptyButton: EmptyButtonVue,
+    EmptyButtonVue,
     HollowButtonVue,
     TextInputWithErrorVue,
     UserNavVue,

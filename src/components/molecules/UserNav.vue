@@ -1,6 +1,6 @@
 <template>
   <div v-if="isLoggedIn" class="font-secondary text-right">
-    <p class="text-center p-2 w-40 truncate">hi {{ user?.name }}!</p>
+    <p class="text-center p-2 w-40 truncate">{{ user?.name }}!</p>
     <router-link v-if="keepExpanded" to="/dashboard">
       <SolidButtonVue :text="'dashboard'" class="w-32 mt-2 mb-1" />
     </router-link>

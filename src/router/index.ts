@@ -32,6 +32,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/coffee.vue"),
   },
   {
+    path: "/studio",
+    component: () => import("@/views/studio.vue"),
+  },
+  {
     path: "/error",
     component: ErrorPage,
   },

@@ -1,58 +1,15 @@
 <template>
-  <div
-    class="lg:px-96 sm:px-32 px-5 py-10 min-h-screen"
-    v-if="els"
-    :style="'background-color:light' + branch.scene.bg"
-  >
-    <!-- Form Content -->
-    <div v-for="el in els" :key="el.id">
-      <!-- Question -->
-      <div class="font-primary text-xl pl-2">{{ el.title }}</div>
-
-      <div v-if="el.__typename !== 'empty'" class="mt-6 font-secondary text-lg">
-        <scmcVue
-          v-if="el.__typename == 'McEl'"
-          :node="el"
-          @update:value="updateAnswer($event, el.id)"
-        />
-
-        <!-- <LazyEmpty v-else /> -->
-      </div>
-
-      <!-- <AlertDialogVue :text="currAnswer[id]" class="mt-2" /> -->
-    </div>
-
-    <!-- Form Footer Nav -->
-    <div class="flex px-3 my-6">
-      <div class="w-20 mr-3" v-if="branch.isBackAvail">
-        <HollowButtonVue :text="'back'" @click="goBack()" />
-      </div>
-      <!-- <HollowButton -->
-      <div v-if="branch.next" class="w-20">
-        <SolidButtonVue
-          v-if="submitState.submitLoading.value"
-          :icon="'snowflake'"
-          :icon-type="'far'"
-          :icon-meta="'fa-spin'"
-          :is-selected="true"
-        />
-        <SolidButtonVue v-else :text="'next'" @click="goNext()" />
-      </div>
-      <div class="w-20 ml-auto" v-if="branch.isSubmitAvail">
-        <SolidButtonVue
-          v-if="submitState.submitLoading.value"
-          :icon="'snowflake'"
-          :icon-type="'far'"
-          :icon-meta="'fa-spin'"
-          :is-selected="true"
-        />
-        <SolidButtonVue v-else :text="'submit'" @click="submitFinish()" />
-      </div>
-      <!-- <AlertDialogVue
-        :text="String(submitState.submitError.value)"
-        class="mt-2"
-      /> -->
-    </div>
+  <div class="min-h-screen" v-if="els">
+    <!-- Form Page -->
+    <FormPageVue
+      :branch="branch"
+      :els="els"
+      :submit-state="submitState"
+      :update-answer="updateAnswer"
+      :go-next="goNext"
+      :go-back="goBack"
+      :submit-finish="submitFinish"
+    />
   </div>
   <div
     v-else-if="fetchState.fetchLoading.value"
@@ -73,19 +30,16 @@ import gql from "graphql-tag";
 import { computed, defineComponent, inject } from "vue";
 import { useRoute } from "vue-router";
 
-import scmcVue from "@/components/atoms/question_types/scmc.vue";
-import SolidButtonVue from "@/components/particles/SolidButton.vue";
-import HollowButtonVue from "@/components/particles/HollowButton.vue";
 // import AlertDialogVue from "@/components/particles/AlertDialog.vue";
+import FormPageVue from "@/components/polymers/FormPage.vue";
+
 import { FRAG_BRANCH_CORE } from "@/models/fragments";
 import { ElementNodeType, StringObjMap } from "@/models/elements";
 
 export default defineComponent({
   components: {
-    scmcVue,
-    SolidButtonVue,
-    HollowButtonVue,
     // AlertDialogVue,
+    FormPageVue,
   },
   setup() {
     //
